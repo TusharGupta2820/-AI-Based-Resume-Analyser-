@@ -1,205 +1,111 @@
-# -AI-Based-Resume-Analyser-
-📄 Resume Analyzer AI Agent
+# Resume Analyzer AI Agent
 
-An AI-powered Resume Analyzer Agent that analyzes resumes and provides intelligent improvement suggestions based on a target job role.
-The agent uses a Large Language Model (LLM) to compare resumes against job requirements and suggest skills, wording, and formatting improvements.
+A Streamlit-based AI application that analyzes resumes and provides improvement suggestions using Large Language Models (LLMs).
 
-This project demonstrates Agentic AI concepts such as perception, reasoning, and action.
+## Features
 
-🚀 What This Project Does
+- **Resume Upload**: Accepts both PDF files and plain text input
+- **Information Extraction**: Automatically extracts skills, education, and work experience
+- **AI-Powered Analysis**: Uses LLMs to analyze resume against target job roles
+- **Improvement Suggestions**: Provides actionable feedback to improve the resume
+- **User-Friendly Interface**: Clean, intuitive Streamlit UI
 
-✔ Accepts resumes as PDF uploads or plain text
-✔ Extracts resume content automatically
-✔ Identifies skills, education, and work experience
-✔ Compares resume with a target job role
-✔ Suggests missing skills and improvements
-✔ Improves wording and formatting using AI
-✔ Clean and interactive Streamlit UI
+## How It Works
 
-🤖 Agentic AI Behavior
+### Resume Processing
 
-The Resume Analyzer works as an intelligent AI agent:
+The application processes resumes through several stages:
 
-1️⃣ Perception
+1. **Input Processing**:
+   - For PDF uploads: Uses PyPDF2 to extract text content
+   - For text input: Directly processes the provided text
 
-Reads resume content from PDF or text input
+2. **Information Extraction**:
+   - **Skills Extraction**: Uses regex patterns and keyword matching to identify technical and soft skills
+   - **Education Extraction**: Identifies educational qualifications, degrees, and institutions
+   - **Work Experience Extraction**: Detects job positions, companies, and employment history
 
-Accepts target job role from the user
+3. **AI Analysis**:
+   - Sends resume content and target job to an LLM (OpenRouter API in production)
+   - Analyzes resume relevance to target role
+   - Generates improvement suggestions
 
-2️⃣ Reasoning
+### AI-Generated Suggestions
 
-Uses an LLM to:
+The LLM analyzes the resume against the target job role to provide:
 
-Understand resume structure
+1. **Strengths**: Highlights resume elements that align well with the target role
+2. **Areas for Improvement**: Identifies weak areas that need attention
+3. **Missing Skills**: Lists skills relevant to the target role that are absent from the resume
+4. **Wording & Formatting**: Suggests better language and formatting for improved impact
 
-Match resume content with job role
+## How AI Generates Suggestions
 
-Identify skill gaps
+The AI analysis follows these steps:
 
-Analyze clarity and professionalism
+1. **Context Understanding**: The LLM understands the target job requirements and expectations
+2. **Resume Assessment**: Evaluates the resume content against job requirements
+3. **Gap Analysis**: Identifies discrepancies between resume and job requirements
+4. **Recommendation Generation**: Creates specific, actionable suggestions for improvement
 
-3️⃣ Action
+The suggestions are tailored to help users:
+- Optimize their resume for specific roles
+- Highlight relevant skills and experiences
+- Improve language and formatting for better impact
+- Fill skill gaps for their target positions
 
-Generates:
+## Setup and Installation
 
-Resume analysis
+1. Clone or download this repository
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Set up your OpenAI API key:
+   - Copy `.env.example` to `.env` and add your API key:
+     ```bash
+     cp .env.example .env
+     # Then edit .env to add your API key
+     ```
+   - Or set the environment variable directly:
+     ```bash
+     export OPENAI_API_KEY='your-api-key-here'
+     ```
+4. Run the application:
+   ```bash
+   streamlit run resume_analyzer.py
+   ```
 
-Improvement suggestions
+## Usage
 
-Missing skills list
+1. Upload a PDF resume or paste resume text
+2. Enter your target job role
+3. Click "Analyze Resume"
+4. Review the analysis results and improvement suggestions
 
-Better wording and formatting tips
+## Files
 
-🛠 Tech Stack
+- `resume_analyzer.py`: Main application file with all functionality
+- `requirements.txt`: Python dependencies
+- `README.md`: This documentation file
 
-Python 3.10+
+## Technologies Used
 
-Streamlit – User Interface
+- **Streamlit**: Web framework for the user interface
+- **PyPDF2**: PDF text extraction
+- **OpenRouter API**: LLM for resume analysis
+- **Regular Expressions**: Pattern matching for information extraction
+- **Python**: Core programming language
 
-PyPDF2 – PDF text extraction
+## Limitations
 
-LLM API (OpenAI / compatible) – Resume analysis
+- For full functionality, an OpenRouter API key is required
+- Accuracy of information extraction depends on resume formatting
+- Complex resume layouts may not be parsed correctly
 
-dotenv – Environment variable management
+## Future Enhancements
 
-📁 Project Structure
-resume-analyzer-ai-agent/
-│
-├── app.py                 # Streamlit UI
-├── resume_parser.py       # PDF/Text extraction logic
-├── ai_analyzer.py         # AI resume analysis logic
-├── requirements.txt       # Dependencies
-├── .env                   # API keys (not committed)
-└── README.md
-
-📌 Features
-
-✅ Upload resume as PDF
-
-✅ Paste resume as plain text
-
-✅ Extract structured information
-
-✅ AI-based job role comparison
-
-✅ Missing skills detection
-
-✅ Resume wording & formatting suggestions
-
-✅ Simple, clean UI
-
-🔑 Prerequisites
-
-Python 3.10 or higher
-
-LLM API key (OpenAI / compatible)
-
-Git (optional)
-
-⚙️ Setup Instructions
-1️⃣ Clone the Repository
-git clone https://github.com/your-username/resume-analyzer-ai-agent.git
-cd resume-analyzer-ai-agent
-
-2️⃣ Create Virtual Environment
-python -m venv venv
-
-
-Activate it:
-
-Windows
-
-venv\Scripts\activate
-
-
-Linux / Mac
-
-source venv/bin/activate
-
-3️⃣ Install Dependencies
-pip install -r requirements.txt
-
-4️⃣ Set Environment Variables
-
-Create a .env file in the project root:
-
-OPENAI_API_KEY=your_api_key_here
-
-
-⚠️ Never commit API keys to GitHub
-
-5️⃣ Run the Application
-streamlit run app.py
-
-
-Open in browser:
-
-http://localhost:8501
-
-🖥 How Resume Is Processed
-
-User uploads a PDF or enters plain text
-
-PyPDF2 extracts raw text from PDF
-
-Text is cleaned and structured
-
-Resume sections are identified:
-
-Skills
-
-Education
-
-Experience
-
-🧠 How AI Generates Suggestions
-
-The AI model:
-
-Compares resume content with target job role
-
-Identifies missing or weak skills
-
-Suggests:
-
-Better action verbs
-
-Improved sentence clarity
-
-Professional formatting tips
-
-Generates personalized feedback
-
-📝 Example Usage
-
-Input:
-
-Resume: PDF uploaded
-
-Job Role: Data Analyst
-
-AI Output:
-
-Missing Skills: SQL, Power BI
-
-Resume Improvements:
-
-Add quantified achievements
-
-Improve bullet point clarity
-
-Use stronger action verbs
-
-🔮 Future Enhancements
-
-📊 Resume scoring system
-
-🧠 ATS keyword optimization
-
-📎 Multi-resume comparison
-
-🌐 Job description upload
-
-🐳 Docker support
-
-☁️ Cloud deployment
+- Support for additional file formats (DOCX, etc.)
+- Integration with multiple LLM providers
+- More sophisticated parsing for complex resume formats
+- Export functionality for analysis results
